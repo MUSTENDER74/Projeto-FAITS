@@ -6,7 +6,7 @@
 
 :root {
   /* Cores padronizadas com base no logo da Etec */
-  --cor-cabeçalho: #2e3033;      /* Cinza escuro do texto "Etec" */
+  --cor-cabeçalho: #1f2022;      /* Cinza escuro do texto "Etec" */
   --cor-fundo: #f4f4f4;          /* Fundo claro para o corpo */
   --cor-primaria: #000000;       /* Preto para o texto principal */
   --cor-destaque: #D32027;       /* Vermelho institucional do logo */

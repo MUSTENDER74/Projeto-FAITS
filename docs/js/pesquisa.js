@@ -1,100 +1,98 @@
-const formPesquisa = document.getElementById('formPesquisa');
-const inputPesquisa = formPesquisa.querySelector('.input-pesquisa');
+document.addEventListener('DOMContentLoaded', () => {
 
+const paginasDoSite = {
+        // Variações para a Página Inicial (index.html)]
+        'inicio': 'index.html',
+        'Inicio': 'index.html', // Variação com maiúscula
+        'home': 'index.html',
+        'Home': 'index.html', // Variação com maiúscula
+        'principal': 'index.html',
+        'Principal': 'index.html', // Variação com maiúscula
+        'inicio': 'index.html',
+        'home': 'index.html',
+        'principal': 'index.html',
+        'comeco': 'index.html',
+        'pagina inicial': 'index.html',
+        'tela inicial': 'index.html',
+        'menu': 'index.html',
+        'menu principal': 'index.html',
+        'capa': 'index.html',
+        'portal': 'index.html',
+        'entrada': 'index.html',
+        'dashboard': 'index.html',
+        'painel': 'index.html',
+        'voltar ao inicio': 'index.html',
 
-let fuse;
-let listaDeBuscaPlana;
+        // Variações para o Repositório (armario.html)
+        'repositorio': 'armario.html',
+        'repositorios': 'armario.html',
+        'repositorio': 'armario.html',
+        'Repositorio': 'armario.html', // Variação com maiúscula
+        'armario': 'armario.html',
+        'Armario': 'armario.html', // Variação com maiúscula
+        'armario': 'armario.html',
+        'projeto': 'armario.html',
+        'projetos': 'armario.html',
+        'meus projetos': 'armario.html',
+        'lista de projetos': 'armario.html',
+        'trabalhos': 'armario.html',
+        'meus trabalhos': 'armario.html',
+        'portfolio': 'armario.html',
+        'galeria': 'armario.html',
+        'acervo': 'armario.html',
+        'ver projetos': 'armario.html',
+        'listar projetos': 'armario.html',
+        'meu repositorio': 'armario.html',
 
-// --- PASSO 1: Carregar os dados e o índice pré-gerado ---
-async function inicializarBusca() {
-    try {
-        // Carrega a lista de termos e o índice ao mesmo tempo
-        const [respostaLista, respostaIndice] = await Promise.all([
-            fetch('./assets/lista-busca.json'),
-            fetch('./assets/indice-busca.json')
-        ]);
-
+        // Variações para o Perfil (perfil.html)
+        'perfil': 'perfil.html',
+        'Perfil': 'perfil.html',
+        'login': 'perfil.html',
+        'Login': 'perfil.html',
+        'minha conta': 'perfil.html',
+        'meu perfil': 'perfil.html',
+        'entrar': 'perfil.html',
+        'acessar conta': 'perfil.html',
+        'cadastro': 'perfil.html',
+        'cadastrar': 'perfil.html',
+        'registrar': 'perfil.html',
+        'minhas informacoes': 'perfil.html',
+        'meus dados': 'perfil.html',
+        'fazer login': 'perfil.html',
+        'criar conta': 'perfil.html',
+        'Criar conta': 'perfil.html',
         
-        listaDeBuscaPlana = await respostaLista.json();
-        const indiceFuse = await respostaIndice.json();
-        
-        // --- PASSO 2: Inicializar o Fuse.js com os dados carregados ---
-        const options = {
-            keys: ['termo'],
-            includeScore: true,
-            threshold: 0.7, // qual a rigorozidade da busca de termos
-            // IMPORTANTE: Passa o índice pré-gerado para o Fuse
-            index: Fuse.parseIndex(indiceFuse) 
-        };
+        // Variações para Configurações (config.html)
+        'config': 'config.html',
+        'configuracoes': 'config.html',
+        'ajustes': 'config.html',
+        'opcoes': 'config.html',
+        'preferencias': 'config.html',
+        'painel de controle': 'config.html',
+        'definicoes': 'config.html',
+        'meus repositorios': 'config.html',
+    };
 
-        // Cria a instância do Fuse. Agora isso é quase instantâneo!
-        fuse = new Fuse(listaDeBuscaPlana, options);
-        console.log("Sistema de busca inteligente pronto!");
+    const formPesquisa = document.getElementById('formPesquisa');
+    const inputPesquisa = document.getElementById('input-pesquisa');
 
-    } catch (error) {
-        console.error("Falha ao inicializar o sistema de busca:", error);
-        alert("Erro ao carregar a busca. Tente recarregar a página.");
-    }
-}
+    function realizarBusca(event) {
+        event.preventDefault(); // Impede o recarregamento da página
 
-// --- PASSO 3: A função de busca (praticamente a mesma de antes) ---
-function buscarPagina(termo) {
-    if (!fuse) {
-        alert("A busca ainda não está pronta, por favor aguarde um momento.");
-        return;
+        const termoBusca = inputPesquisa.value.trim().toLowerCase();
+
+        if (paginasDoSite[termoBusca]) {
+            window.location.href = paginasDoSite[termoBusca];
+        } else {
+            alert('Página não encontrada para o termo: "' + inputPesquisa.value + '".');
+        }
     }
 
-    const termoFormatado = termo.trim().toLowerCase();
-    if (!termoFormatado) return;
-
-    const resultados = fuse.search(termoFormatado);
-    limparResultados();
-
-    if (resultados.length === 0) {
-        alert("Não encontramos resultados para: " + termo);
-    } else if (resultados.length === 1 || resultados[0].score < 0.1) {
-        window.location.href = resultados[0].item.pagina;
+    if (formPesquisa && inputPesquisa) {
+        formPesquisa.addEventListener('submit', realizarBusca);
+        console.log("Sistema de busca simples pronto!");
     } else {
-        mostrarResultados(resultados.slice(0, 5));
+        console.error("Não foi possível encontrar o formulário (#formPesquisa) ou o campo de busca (#input-pesquisa). Verifique os IDs no seu HTML.");
     }
-}
 
-// --- Funções auxiliares 
-function mostrarResultados(resultados) {
-    const containerResultados = document.createElement('ul');
-    containerResultados.className = 'lista-resultados-pesquisa';
-    const titulo = document.createElement('li');
-    titulo.className = 'resultado-titulo';
-    titulo.textContent = 'Encontramos múltiplos resultados. Onde você quer ir?';
-    containerResultados.appendChild(titulo);
-    resultados.forEach(resultado => {
-        const item = document.createElement('li');
-        const link = document.createElement('a');
-        link.href = resultado.item.pagina;
-        const nomePagina = resultado.item.pagina.replace('.html', '').replace(/[-_]/g, ' ');
-        link.innerHTML = `Termo: "<strong>${resultado.item.termo}</strong>" <span class="pagina-destino">em ${nomePagina}</span>`;
-        item.appendChild(link);
-        containerResultados.appendChild(item);
-    });
-    document.querySelector('.cabeçalho').insertAdjacentElement('afterend', containerResultados);
-}
-
-function limparResultados() {
-    const listaExistente = document.querySelector('.lista-resultados-pesquisa');
-    if (listaExistente) listaExistente.remove();
-}
-
-// --- Event Listeners ---
-formPesquisa.addEventListener('submit', function(event) {
-    event.preventDefault();
-    buscarPagina(inputPesquisa.value);
 });
-
-document.addEventListener('click', function(event) {
-    if (!formPesquisa.contains(event.target)) {
-        limparResultados();
-    }
-});
-
-// --- Inicia todo o processo quando a página carrega ---
-document.addEventListener('DOMContentLoaded', inicializarBusca);

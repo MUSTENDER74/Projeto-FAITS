@@ -131,3 +131,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicialização da Página
     buscarEGerarProjetos();
 });
+
+
+// ======================================================
+    // LÓGICA PARA PROCESSAR A BUSCA VINDA DA URL
+    // ======================================================
+    function processarBuscaDaURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const termoDeBusca = urlParams.get('q');
+
+        if (termoDeBusca) {
+            console.log(`Buscando por: "${termoDeBusca}"`);
+            // Aqui você precisará integrar com sua lógica de busca existente (Fuse.js)
+            // Esta parte assume que a busca é feita no carregamento da página.
+            // A melhor abordagem é ter o Fuse.js inicializado aqui também.
+        } else {
+            // Se não houver termo de busca, carrega todos os projetos
+            buscarEGerarProjetos();
+        }
+    }
+
+    // Chama a função para processar a busca assim que a página carrega
+    processarBuscaDaURL();
