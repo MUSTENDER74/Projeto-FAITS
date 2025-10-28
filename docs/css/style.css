@@ -6,8 +6,8 @@
 
 :root {
   /* Cores padronizadas com base no logo da Etec */
-  --cor-cabeçalho: #1f2022;      /* Cinza escuro do texto "Etec" */
-  --cor-fundo: #f4f4f4;          /* Fundo claro para o corpo */
+  --cor-cabeçalho: #222324;      /* Cinza escuro do texto "Etec" */
+  --cor-fundo: #f1f1f1;          /* Fundo claro para o corpo */
   --cor-primaria: #000000;       /* Preto para o texto principal */
   --cor-destaque: #D32027;       /* Vermelho institucional do logo */
   --cor-botao: #D32027;          /* Vermelho para botões de ação */
@@ -642,7 +642,7 @@ padding: 0 20px;
 }
 
 /* ==========================================================================
-   5. RODAPÉ (FOOTER) - ESTILOS BASE (MOBILE FIRST)
+   5. RODAPÉ (FOOTER) 
    ========================================================================== */
 
 .site-footer {
@@ -652,7 +652,9 @@ padding: 0 20px;
     padding: 10px 0px; 
     font-family: var(--fonte-texto);
     line-height: 1.6;
-    text-align: left; 
+    text-align: center; 
+    flex-direction: column;
+    align-items: center;    
 }
 
 .footer-container {
@@ -660,7 +662,7 @@ padding: 0 20px;
     width: 100%;
     margin: 0 auto;
     display: flex;
-    flex-wrap: wrap;          /* Permite que as colunas quebrem a linha */
+    flex-wrap: wrap;         
     justify-content: center; 
     gap: 34px; 
 }
@@ -672,10 +674,11 @@ padding: 0 20px;
 .footer-section h4 {
     color: var(--cor-destaque);
     font-family: var(--fonte-titulo);
-    font-size: 14px;
-    margin-top: 0;
+    font-size: 12px;
+    margin-top: 10px;
     margin-bottom: 15px;
     text-transform: uppercase;
+   
 }
 
 .footer-section p, .footer-section a {
