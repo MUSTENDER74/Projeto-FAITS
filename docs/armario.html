@@ -65,63 +65,45 @@
     </div>
 </header>
 
-    <main class="container-projetos">
+<main class="container-principal">
 
-        <div class="titulo-wrapper">
-            <h1 class="teste_conteudo__conteudo__titulo">
-                <b class="negrito1">Repositório</b>
-            </h1>
-            <button class="btn-adicionar js-abrir-form" id="btn-abrir-formulario" title="Adicionar novo repositório">
-                <img src="./assets/botaoadicionar.jpg" alt="Ícone de Adicionar">
-            </button>
-        </div>
+    <div class="repositorio-layout">
+        
+        <aside class="sidebar-repositorios">
+            <h2 class="sidebar-titulo">Repositórios</h2>
+            <ul id="lista-repositorios" class="lista-repositorios">
+                <li class="active" data-repositorio="todos">Adicionar Projeto + </li>
+                <li class="active" data-repositorio="todos">Lista de Projetos</li>
+                <li class="" data-repositorio="todos">Teste lista filtro</li>
+                <li class="" data-repositorio="todos">Teste lista filtro</li>
+                <li class="" data-repositorio="todos">Teste lista filtro</li>
+                <li class="" data-repositorio="todos">Teste lista filtro</li>
+                <li class="" data-repositorio="todos">Teste lista filtro</li>
+                <li class="" data-repositorio="todos">Teste lista filtro</li>
+                <li class="" data-repositorio="todos">Teste lista filtro</li>
+                <li class="" data-repositorio="todos">Teste lista filtro</li>
+                <li class="" data-repositorio="todos">Teste lista filtro</li>
+                <li class="" data-repositorio="todos">Teste lista filtro</li>
+                <li class="" data-repositorio="todos">Teste lista filtro</li>
+                <li class="" data-repositorio="todos">Teste lista filtro</li>
+                <li class="" data-repositorio="todos">Teste lista filtro</li>
+            </ul>
+        </aside>
 
-        <section class="filter-section">
-            <h2 class="section-heading">FILTRAR</h2>
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                </div>
+        <section class="conteudo-principal">
+            <h1 id="titulo-principal" class="titulo-principal">Todos os Projetos</h1>
+            <button class="Botão-mobile">Adicionar Projeto +</button>
+            <div class="projects-grid" id="projects-grid-container">
+                <p>Projetos serão carregados aqui, pdf, imagens, dados do grupo...</p>
+                <div class="project-card-placeholder"></div>
+                <div class="project-card-placeholder"></div>
+                <div class="project-card-placeholder"></div>
+            </div>
         </section>
+        
+    </div>
 
-        <section id="add-project-section" class="add-project-form hidden">
-            <h2 class="section-heading">Novo Projeto</h2>
-            <form id="project-form">
-                <div class="form-group">
-                    <label for="titulo">Título do Projeto</label>
-                    <input type="text" id="titulo" required>
-                </div>
-                <div class="form-group">
-                    <label for="descricao">Descrição</label>
-                    <textarea id="descricao" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="imagem-file">Imagem do Projeto (Obrigatório)</label>
-                    <input type="file" id="imagem-file" accept="image/*" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="documento-file">Documento do Projeto (PDF, DOCX - Obrigatório)</label>
-                    <input type="file" id="documento-file" accept=".pdf,.doc,.docx" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="link">Link Externo (Opcional)</label>
-                    <input type="text" id="link" placeholder="ex: https://github.com/seu-projeto">
-                </div>
-                <div class="form-buttons">
-                    <button type="submit" class="btn-view-project">Salvar Projeto</button>
-                    <button type="button" id="btn-cancelar" class="btn-cancel">Cancelar</button>
-                </div>
-            </form>
-        </section>
-
-       <section class="projects-grid-section">
-            <h2 class="section-heading">PROJETOS</h2>
-                <div class="projects-grid" id="projects-grid-container">
-        </div>
-        </section>
-
-    </main>
+</main>
 
     <footer class="site-footer">
     <div class="footer-container">
@@ -163,10 +145,8 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
-    <script type="module" src="./js/firebase-init.js"></script>
     <script src="./js/pesquisa.js"></script>
-    <script type="module" src="./js/armario.js"></script>
-    <script src="./js/botao_adicionar.js"></script>
+
     </body>
 </html>
 
